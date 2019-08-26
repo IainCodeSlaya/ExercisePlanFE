@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,6 @@ import { ExerciseplanComponent } from './allexerciseplans/exerciseplans/exercise
 import { ExerciseplantypeComponent } from './allexerciseplans/exerciseplans/exerciseplantype/exerciseplantype.component';
 import { ExerciseplandayComponent } from './allexerciseplans/exerciseplans/exerciseplanday/exerciseplanday.component';
 import { DayComponent } from './allexerciseplans/exerciseplans/day/day.component';
-import { WorkoutdayComponent } from './allexerciseplans/exerciseplans/workoutday/workoutday.component';
 import { WorkoutComponent } from './allexerciseplans/exerciseplans/workout/workout.component';
 import { WorkoutsetComponent } from './allexerciseplans/exerciseplans/workoutset/workoutset.component';
 import { ExercisesetComponent } from './allexerciseplans/exerciseplans/exerciseset/exerciseset.component';
@@ -18,6 +18,7 @@ import { ExerciseComponent } from './allexerciseplans/exerciseplans/exercise/exe
 import { ExercisebodytypeComponent } from './allexerciseplans/exerciseplans/exercisebodytype/exercisebodytype.component';
 import { ExercisetypeComponent } from './allexerciseplans/exerciseplans/exercisetype/exercisetype.component';
 import { DayworkoutComponent } from './allexerciseplans/exerciseplans/dayworkout/dayworkout.component';
+import { ExerciseplanService } from './shared/exerciseplan.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,6 @@ import { DayworkoutComponent } from './allexerciseplans/exerciseplans/dayworkout
     ExerciseplantypeComponent,
     ExerciseplandayComponent,
     DayComponent,
-    WorkoutdayComponent,
     WorkoutComponent,
     WorkoutsetComponent,
     ExercisesetComponent,
@@ -40,9 +40,10 @@ import { DayworkoutComponent } from './allexerciseplans/exerciseplans/dayworkout
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ExerciseplanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
