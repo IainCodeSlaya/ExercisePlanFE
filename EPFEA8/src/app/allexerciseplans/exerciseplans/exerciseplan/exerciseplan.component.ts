@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ExerciseplanService } from 'src/app/shared/exerciseplan.service';
 import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogConfig  } from '@angular/material/dialog';
+import { ExerciseplandayComponent } from '../exerciseplanday/exerciseplanday.component';
 
 @Component({
   selector: 'app-exerciseplan',
@@ -9,7 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class ExerciseplanComponent implements OnInit {
 
-  constructor(private service: ExerciseplanService) { }
+  constructor(private service: ExerciseplanService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.resetForm();
@@ -30,8 +33,13 @@ export class ExerciseplanComponent implements OnInit {
     this.service.exerciseplanday = [];
   }
 
-  AddDay(epdayi, epID) {
-
+  AddDay(epdayi, Exercise_Plan_ID) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.minWidth = 300;
+    dialogConfig.data = { epdayi, Exercise_Plan_ID };
+    this.dialog.open(ExerciseplandayComponent);
   }
 
 }

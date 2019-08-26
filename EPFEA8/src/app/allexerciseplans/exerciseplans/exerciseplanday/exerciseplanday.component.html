@@ -1,1 +1,26 @@
-<p>exerciseplanday works!</p>
+<h4 class="dispaly-4">Choose a Day</h4>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+
+  <div class="form-group">
+    <label>Select Day</label>
+    <select name="DayID" #DayID="ngModel" [(ngModel)]="formData.Day_ID" class="form-control">
+      <option value="0">-Select-</option>
+      
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Submit</button>
+    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+  </div>
+</form>
+
+<!--
+    (change)="updatePrice($event.target)"
+    [class.is-invalid]="!isValid && formData.ItemID==0"
+    <input type="hidden"  name="OrderItemID" #OrderItemID="ngModel" [(ngModel)]="formData.OrderItemID">
+    <input type="hidden"  name="OrderID" #OrderID="ngModel" [(ngModel)]="formData.OrderID">
+    <input type="hidden"  name="ItemName" #ItemName="ngModel" [(ngModel)]="formData.ItemName">
+    <option *ngFor="let item of dayList" value="{{item.Day_ID}}">{{item.Day_Type}}</option>
+-->
