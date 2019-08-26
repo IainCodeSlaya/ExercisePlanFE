@@ -49,7 +49,7 @@ import { ExerciseplanService } from './shared/exerciseplan.service';
     MatDialogModule,
     HttpClientModule
   ],
-  entryComponents: [ExerciseplandayComponent],
+  entryComponents: [ExerciseplandayComponent, DayworkoutComponent],
   providers: [ExerciseplanService],
   bootstrap: [AppComponent]
 })

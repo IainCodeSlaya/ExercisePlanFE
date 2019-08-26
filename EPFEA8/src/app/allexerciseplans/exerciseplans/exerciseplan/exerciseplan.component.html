@@ -1,10 +1,12 @@
 
-<form #form="ngForm" autocomplete="off" *ngIf="service.formData">
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
+        <input type="hidden"  name="ExercisePlanID" #ExercisePlanID="ngModel" [(ngModel)]="service.formData.Exercise_Plan_ID">
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
                 <label>Exercise Plan Name</label>
-                <input name="ExercisePlanName" #ExercisePlanName="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Name" class="form-control">
+                <input name="ExercisePlanName" #ExercisePlanName="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Name" class="form-control"
+                [class.is-invalid]="!isValid && service.formData.Exercise_Plan_Name==''">
             </div>
         </div>
     </div>
@@ -13,8 +15,9 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Exercise Plan Type</label>
-                <select name="ExercisePlanTypeID" #ExercisePlanTypeID="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Type_ID" class="form-control">
+                <select name="ExercisePlanTypeID" #ExercisePlanTypeID="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Type_ID" class="form-control" (change)="updatePrice($event.target)" [class.is-invalid]="!isValid && service.formData.Exercise_Plan_Type_ID==0">
                     <option value="0">-- Select --</option>
+                    <option *ngFor="let item of epTypeList" value="{{item.Exercise_Plan_Type_ID}}">{{item.Plan_Type_Description}}</option>
                 </select>
             </div>
         </div>
@@ -31,6 +34,20 @@
             </div>
         </div>
     </div>
+
+      <!-- order items table-->
+    <table class="table table-borderless">
+        <thead class="thead-light" *ngFor="let item of service.exerciseplanday;let i=index;">
+            <th>{{item.Day_Type}}</th>
+        </thead>
+        <tbody>
+        <tr *ngIf="service.exerciseplanday.length==0" [class.text-danger]="!isValid && service.exerciseplanday.length==0">
+            <td class="font-italic text-center" colspan="5">
+            No Day Selected.
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
     <div class="form-group">
         <button type="submit" class="btn btn-dark" (click)="AddDay(null,service.formData.Exercise_Plan_ID)"><i clas="fa fa-plus"></i> Add Day</button>
