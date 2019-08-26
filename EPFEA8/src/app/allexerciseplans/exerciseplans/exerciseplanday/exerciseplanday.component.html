@@ -6,7 +6,7 @@
     <label>Select Day</label>
     <select name="DayID" #DayID="ngModel" [(ngModel)]="formData.Day_ID" class="form-control">
       <option value="0">-Select-</option>
-      
+      <option *ngFor="let item of dayList" value="{{item.Day_ID}}">{{item.Day_Type}}</option>
     </select>
   </div>
 

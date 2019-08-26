@@ -37,9 +37,9 @@ export class ExerciseplanComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.minWidth = 300;
+    dialogConfig.width = "25%";
     dialogConfig.data = { epdayi, Exercise_Plan_ID };
-    this.dialog.open(ExerciseplandayComponent);
+    this.dialog.open(ExerciseplandayComponent, dialogConfig);
   }
 
 }

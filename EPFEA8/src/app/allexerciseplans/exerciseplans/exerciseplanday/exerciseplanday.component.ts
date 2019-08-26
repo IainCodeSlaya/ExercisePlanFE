@@ -22,6 +22,9 @@ export class ExerciseplandayComponent implements OnInit {
     private epService: ExerciseplanService) { }
 
   ngOnInit() {
+
+    this.dService.getDayList().then(res => this.dayList = res as Day[]);
+
     this.formData = {
       Exercise_Plan_Day_ID: null,
       Exercise_Plan_ID: this.data.Exercise_Plan_ID,
