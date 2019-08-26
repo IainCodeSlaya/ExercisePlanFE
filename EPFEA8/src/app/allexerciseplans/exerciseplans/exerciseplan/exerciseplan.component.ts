@@ -6,6 +6,7 @@ import { ExerciseplandayComponent } from '../exerciseplanday/exerciseplanday.com
 import { ExerciseplantypeService } from 'src/app/shared/exerciseplantype.service';
 import { Exerciseplanday } from 'src/app/shared/exerciseplanday.model';
 import { Exerciseplantype } from 'src/app/shared/exerciseplantype.model';
+import { ExerciseComponent } from '../exercise/exercise.component';
 
 @Component({
   selector: 'app-exerciseplan',
@@ -56,6 +57,15 @@ export class ExerciseplanComponent implements OnInit {
     dialogConfig.width = "25%";
     dialogConfig.data = { epdayi, Exercise_Plan_ID };
     this.dialog.open(ExerciseplandayComponent, dialogConfig);
+  }
+
+  AddExercise(epdayi, Exercise_Plan_ID) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = "27%";
+    dialogConfig.data = { epdayi, Exercise_Plan_ID };
+    this.dialog.open(ExerciseComponent, dialogConfig);
   }
 
   validateForm() {

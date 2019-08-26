@@ -38,8 +38,7 @@ export class ExerciseplandayComponent implements OnInit {
       Day_Type: ''
     };
   }
-
-
+0
   AddDay(ctrl) {
     if (ctrl.selectedIndex === 0) {
       this.formData.Day_Type = '';

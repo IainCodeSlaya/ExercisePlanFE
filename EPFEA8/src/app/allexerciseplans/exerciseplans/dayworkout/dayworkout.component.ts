@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { Dayworkout } from 'src/app/shared/dayworkout.model';
 import { Workout } from 'src/app/shared/workout.model';
@@ -21,24 +21,22 @@ export class DayworkoutComponent implements OnInit {
     public dialogRef: MatDialogRef<DayworkoutComponent>,
     private wService: WorkoutService,
     private epService: ExerciseplanService,
-    private dialog: MatDialog) { }
+    // private dialog: MatDialog
+    ) { }
 
   ngOnInit() {
 
-    this.dService.getDayList().then(res => this.dayList = res as Day[]);
-
-    this.currentWorkouts = 0;
+    this.wService.getWorkoutList().then(res => this.workoutList = res as Workout[]);
 
     this.formData = {
-      Exercise_Plan_Day_ID: null,
-      Exercise_Plan_ID: this.data.Exercise_Plan_ID,
-      Day_ID: 0,
-      Day_Type: ''
+      Day_Workout_ID: null,
+      Workout_Set_ID: 0,
+      Exercise_Plan_Day_ID: this.data.Exercise_Plan_Day_ID
     };
   }
 
 
-  AddDay(ctrl) {
+  AddWorkout(ctrl) {
     if (ctrl.selectedIndex === 0) {
       this.formData.Day_Type = '';
     } else {
