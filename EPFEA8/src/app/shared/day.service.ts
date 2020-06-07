@@ -9,7 +9,5 @@ export class DayService {
 
   constructor(private http: HttpClient) { }
 
-  getDayList() {
-    return this.http.get(environment.apiURL + '/Days').toPromise();
-  }
+  
 }

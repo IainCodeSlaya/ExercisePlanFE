@@ -1,35 +1,45 @@
-<h4 class="dispaly-4">Choose a Day</h4>
-<hr>
-<form #form="ngForm" autocomplete="off" (submit)="onSub(form)">
-  <input type="hidden"  name="ExercisePlanDayID" #ExercisePlanDayID="ngModel" [(ngModel)]="formData.Exercise_Plan_Day_ID">
-  <input type="hidden"  name="DayType" #DayType="ngModel" [(ngModel)]="formData.Day_Type">
+<div class="bg">
+  <h1 class="dayh1">Choose a Day</h1>
+  <hr>
+  <form #form="ngForm" autocomplete="off" (submit)="onSub(form)">
+    <input type="hidden"  name="ExercisePlanDayID" #ExercisePlanDayID="ngModel" [(ngModel)]="epService.formDataDay.Exercise_Plan_Day_ID">
+    <input type="hidden"  name="ExercisePlanID" #ExercisePlanID="ngModel" [(ngModel)]="epService.formDataDay.Exercise_Plan_ID">
+    <!-- <input type=""  name="DDayID" #DDayID="ngModel" [(ngModel)]="epService.formDataDay.Day_ID"> -->
+    <input type="hidden"  name="DayType" #DayType="ngModel" [(ngModel)]="epService.formDataDay.Day_Type">
+  
+    <div class="form-group">
+      <label>Select Day</label>
+      <select name="DayID" #DayID="ngModel" [(ngModel)]="epService.formDataDay.Day_ID" class="form-control" (change)="AddDay($event.target)"
+      [class.is-invalid]="!isValid && epService.formDataDay.Day_ID==0">
+        <option value="0">-Select-</option>
+        <option *ngFor="let item of dayList" value="{{item.Day_ID}}">{{item.Day_Type}}</option>
+      </select>
+    </div>
+  
+    <!-- <div class="form-group">
+      <button class="btn btn-sm btn-primary text-white"
+              (click)="AddWorkout(null,formData.Exercise_Plan_Day_ID)">
+              <i class="fa fa-plus"></i> Add Wokout
+      </button>
+    </div> -->
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark"><i class="fa fa-database"></i> Add Day</button>
+      <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close" ></i> Close</button>
+    </div>
+  </form>
+</div>
 
-  <div class="form-group">
-    <label>Select Day</label>
-    <select name="DayID" #DayID="ngModel" [(ngModel)]="formData.Day_ID" class="form-control" (change)="AddDay($event.target)"
-    [class.is-invalid]="!isValid && formData.Day_ID==0">
-      <option value="0">-Select-</option>
-      <option *ngFor="let item of dayList" value="{{item.Day_ID}}">{{item.Day_Type}}</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <button class="btn btn-sm btn-primary text-white"
-            (click)="AddWorkout(null,formData.Exercise_Plan_Day_ID)">
-            <i class="fa fa-plus"></i> Add Wokout
-    </button>
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-dark" [disabled]="currentWorkouts == 0"><i class="fa fa-database"></i> Save Day</button>
-    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close" ></i> Close</button>
-  </div>
-</form>
 
 <!--
+<div id="adb" class="flex dark">
+        <a (click)="AddDay(service.formData.Exercise_Plan_ID)" class="bttn-dark">ADD DAY</a>
+    </div>
+
     [class.is-invalid]="!isValid && formData.ItemID==0"
     <input type="hidden"  name="OrderItemID" #OrderItemID="ngModel" [(ngModel)]="formData.OrderItemID">
     <input type="hidden"  name="OrderID" #OrderID="ngModel" [(ngModel)]="formData.OrderID">
     <input type="hidden"  name="ItemName" #ItemName="ngModel" [(ngModel)]="formData.ItemName">
+    <button type="submit" class="btn btn-dark" [disabled]="currentWorkouts == 0"><i class="fa fa-database"></i> Add Day</button>
     <option *ngFor="let item of dayList" value="{{item.Day_ID}}">{{item.Day_Type}}</option>
         <button (click)="currentLesson = '2'"
             [disabled]="currentLesson !== '1'" class="primair">Start lesson

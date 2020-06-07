@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Exercisetype } from 'src/app/shared/exercisetype.model';
 import { Exercisebodytype } from 'src/app/shared/exercisebodytype.model';
 import { ExerciseService } from 'src/app/shared/exercise.service';
 import { ExercisetypeService } from 'src/app/shared/exercisetype.service';
 import { ExercisebodytypeService } from 'src/app/shared/exercisebodytype.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Exercise } from 'src/app/shared/exercise.model';
 import { NgForm } from '@angular/forms';
 import { ExercisesetComponent } from '../exerciseset/exerciseset.component';
@@ -22,6 +22,8 @@ export class ExerciseComponent implements OnInit {
   sets: number;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    public dialogRef: MatDialogRef<ExerciseComponent>,
     private service: ExerciseService,
     private etService: ExercisetypeService,
     private ebtService: ExercisebodytypeService,
@@ -47,10 +49,12 @@ export class ExerciseComponent implements OnInit {
 
   AddExercise(ctrl) {
     if (ctrl.selectedIndex === 0) {
+      this.service.formData.Exercise_Name = '';
       this.service.formData.Exercise_Description = '';
       this.service.formData.Exercise_Type_ID = 0;
       this.service.formData.Exercise_Body_Type_ID = 0;
     } else {
+      this.service.formData.Exercise_Name = this.eList[ctrl.selectedIndex - 1].Exercise_Name;
       this.service.formData.Exercise_Description = this.eList[ctrl.selectedIndex - 1].Exercise_Description;
       this.service.formData.Exercise_Body_Type_ID = this.eList[ctrl.selectedIndex - 1].Exercise_Body_Type_ID;
       this.service.formData.Exercise_Type_ID = this.eList[ctrl.selectedIndex - 1].Exercise_Type_ID;
@@ -61,7 +65,7 @@ export class ExerciseComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width = "30%";
+    dialogConfig.width = "60%";
     dialogConfig.data = { ei, Exercise_ID };
     this.dialog.open(ExercisesetComponent, dialogConfig);
   }

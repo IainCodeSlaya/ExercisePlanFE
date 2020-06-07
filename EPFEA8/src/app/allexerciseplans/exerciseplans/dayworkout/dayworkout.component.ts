@@ -36,13 +36,13 @@ export class DayworkoutComponent implements OnInit {
   }
 
 
-  AddWorkout(ctrl) {
+  /*AddWorkout(ctrl) {
     if (ctrl.selectedIndex === 0) {
       this.formData.Day_Type = '';
     } else {
       this.formData.Day_Type = this.dayList[ctrl.selectedIndex - 1].Day_Type;
     }
-  }
+  }*/
 
   // AddWorkout(dayi, Exercise_Plan_Day_ID) {
   //   const dialogConfig = new MatDialogConfig();
@@ -53,7 +53,7 @@ export class DayworkoutComponent implements OnInit {
   //   this.dialog.open(DayworkoutComponent, dialogConfig);
   // }
 
-  onSub(form: NgForm) {
+  /*onSub(form: NgForm) {
     if (this.validateForm(this.formData)) {
       this.epService.exerciseplanday.push(this.formData);
       this.dialogRef.close();
@@ -66,6 +66,6 @@ export class DayworkoutComponent implements OnInit {
       this.isValid = false;
     }
     return this.isValid;
-  }
+  }*/
 
 }

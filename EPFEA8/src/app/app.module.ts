@@ -22,6 +22,9 @@ import { ExercisebodytypeComponent } from './allexerciseplans/exerciseplans/exer
 import { ExercisetypeComponent } from './allexerciseplans/exerciseplans/exercisetype/exercisetype.component';
 import { DayworkoutComponent } from './allexerciseplans/exerciseplans/dayworkout/dayworkout.component';
 import { ExerciseplanService } from './shared/exerciseplan.service';
+import { MatSelectModule } from '@angular/material/select';
+import { MaterialModule } from './material.module';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { ExerciseplanService } from './shared/exerciseplan.service';
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    MatSelectModule
   ],
   entryComponents: [ExerciseplandayComponent, DayworkoutComponent, ExerciseComponent, ExercisesetComponent],
   providers: [ExerciseplanService],

@@ -1,44 +1,60 @@
-
 <form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
         <input type="hidden"  name="ExercisePlanID" #ExercisePlanID="ngModel" [(ngModel)]="service.formData.Exercise_Plan_ID">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 offset-md-3">
             <div class="form-group">
-                <label>Exercise Plan Name</label>
-                <input name="ExercisePlanName" #ExercisePlanName="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Name" class="form-control"
+                <label id="epn">EXERCISE PLAN NAME</label> 
+                <input id="iepn" name="ExercisePlanName" #ExercisePlanName="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Name" class="form-control"
                 [class.is-invalid]="!isValid && service.formData.Exercise_Plan_Name==''">
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
+    <div class="col-md-6 offset-md-3">
             <div class="form-group">
-                <label>Exercise Plan Type</label>
-                <select name="ExercisePlanTypeID" #ExercisePlanTypeID="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Type_ID" class="form-control" (change)="updatePrice($event.target)" [class.is-invalid]="!isValid && service.formData.Exercise_Plan_Type_ID==0">
+                <label id="ept">EXERCISE PLAN TYPE</label>
+                <select id="sept" name="ExercisePlanTypeID" #ExercisePlanTypeID="ngModel" [(ngModel)]="service.formData.Exercise_Plan_Type_ID" class="form-control"
+                        (change)="updatePrice($event.target)" [class.is-invalid]="!isValid && service.formData.Exercise_Plan_Type_ID==0">
                     <option value="0">-- Select --</option>
                     <option *ngFor="let item of epTypeList" value="{{item.Exercise_Plan_Type_ID}}">{{item.Plan_Type_Description}}</option>
                 </select>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 offset-md-3">
             <div class="form-group">
-                <label>Price</label>
-
+                <label id="epp">PRICE</label>                
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">R</div>
+                        <div id="deppi" class="input-group-text">R</div>
                     </div>
-                    <input name="PlanTypePrice" #PlanTypePrice="ngModel" [(ngModel)]="service.formData.Plan_Type_Price" class="form-control" readonly>
+                    <input id="eppi" name="PlanTypePrice" #PlanTypePrice="ngModel" [(ngModel)]="service.formData.Plan_Type_Price" class="form-control" readonly>
                 </div>
             </div>
         </div>
-    </div>
 
-      <!-- order items table-->
-    <table class="table table-borderless">
-        <thead class="thead-light" *ngFor="let item of service.exerciseplanday;let i=index;">
-            <th>{{item.Day_Type}}</th>
+    <div id="cepb" class="flex dark">
+        <a (click)="createPlan()" class="bttn-dark">CREATE EXERCISE PLAN</a>
+    </div>
+      <!-- <div class="flex dark">
+        <a (click)="test()" class="bttn-dark">Test</a>
+        class="table table-borderless"
+        class="thead-light"
+      </div> -->
+
+    <h1 hidden id="epidl" class="epName">{{ service.formData.Exercise_Plan_Name }}</h1>
+
+    <table hidden id="tday">
+        <thead *ngFor="let item of service.exerciseplanday; let i=index;">
+            <tr>
+                <th>{{ item.Day_Type }}</th>
+            </tr>
+            <tr>
+                <td>
+                    <div id="awb" class="flex dark">
+                        <a (click)="AddWorkout(service.formData.Exercise_Plan_ID)" class="bttn-dark">ADD WORKOUT</a>
+                    </div>
+                </td>
+            </tr>
         </thead>
         <tbody>
         <tr *ngIf="service.exerciseplanday.length==0" [class.text-danger]="!isValid && service.exerciseplanday.length==0">
@@ -49,13 +65,9 @@
         </tbody>
     </table>
 
-    <div class="form-group">
-        <button type="button" class="btn btn-dark" (click)="AddExercise(null,service.formData.Exercise_Plan_ID)"><i clas="fa fa-plus"></i> Add Exercise</button>
-    </div> 
-    <div class="form-group">
-        <button type="button" class="btn btn-dark" (click)="AddDay(null,service.formData.Exercise_Plan_ID)"><i clas="fa fa-plus"></i> Add Day</button>
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-dark"><i clas="fa fa-database"></i> Save</button>
+    <div id="adb" class="flex dark">
+        <a (click)="AddDay(service.formData.Exercise_Plan_ID)" class="bttn-dark">ADD DAY</a>
     </div>
 </form>
+
+<!-- type="submit" <i class="fa fa-database"></i> -->
