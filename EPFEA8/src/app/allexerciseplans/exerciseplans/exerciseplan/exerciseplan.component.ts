@@ -67,22 +67,18 @@ export class ExerciseplanComponent implements OnInit {
     }
   }
 
+  //if else
+  //loop
+  //array
+  //function
+
   AddDay(Exercise_Plan_ID) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "50%";
     dialogConfig.data = { Exercise_Plan_ID };
-
-    // let awb = document.getElementById('awb') as HTMLDivElement;
-    // awb.hidden = false;
-    console.log(Exercise_Plan_ID);
-
     this.dialog.open(ExerciseplandayComponent, dialogConfig);
-
-    //if()
-    // const dialogRef = this.dialog.open(ExerciseplandayComponent, {
-    // });
   }
 
   AddExercise(Exercise_Plan_ID) {
